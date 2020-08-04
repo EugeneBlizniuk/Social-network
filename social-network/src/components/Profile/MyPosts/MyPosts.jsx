@@ -10,9 +10,8 @@ const MyPosts = () => {
       My posts
       <div>New posts</div>
       <div>
-        <Post />
-        <Post />
-        <Post />
+        <Post message="What's up?"/>
+        <Post message="This is my first post!"/>
       </div>
     </div>
   );

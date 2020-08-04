@@ -1,8 +1,14 @@
 .nav {
     grid-area: n;
     background-color: chocolate;
+    padding: 20px;
 }
 
-.item {
+.item a {
     color: cornsilk;
+    text-decoration: none;
+}
+
+.item a.activeLink {
+    color: darkcyan;
 }
