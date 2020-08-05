@@ -6,7 +6,7 @@ import style from './MyPosts.module.css';
 
 const MyPosts = () => {
   return (
-    <div>
+    <div className={style.postsBlock}>
       My posts
       <div>New posts</div>
       <div>
