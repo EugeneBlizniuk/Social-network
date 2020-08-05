@@ -11,7 +11,7 @@ import News from "./components/Profile/News/News";
 import Music from "./components/Profile/Music/Music";
 import Settings from "./components/Profile/Settings/Settings";
 
-const App = () => {
+const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -19,8 +19,10 @@ const App = () => {
         <Navbar />
 
         <div className="app-wrapper-content">
-          <Route path="/profile" component={Profile} />
-          <Route path="/dialogs" component={Dialogs} />
+          <Route path="/profile" 
+          render={ () => <Profile postMessages={props.state.profileData.postMessages} /> } />
+          <Route path="/dialogs" 
+          render={ () => <Dialogs dialogs={props.state.dialogsData.dialogs} messages={props.state.dialogsData.messages} /> } />
           <Route path="/news" component={News} />
           <Route path="/music" component={Music} />
           <Route path="/settings" component={Settings} />

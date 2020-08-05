@@ -4,14 +4,14 @@ import Post from './Post/Post';
 
 import style from './MyPosts.module.css';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+  let posts = props.postMessages.map(p => <Post message={p.message} likeCount={p.likeCount} />);
   return (
     <div className={style.postsBlock}>
       My posts
       <div>New posts</div>
       <div>
-        <Post message="What's up?"/>
-        <Post message="This is my first post!"/>
+        { posts }
       </div>
     </div>
   );
