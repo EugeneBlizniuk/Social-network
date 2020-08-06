@@ -11,7 +11,7 @@ const MyPosts = (props) => {
       My posts
       <div>New posts</div>
       <div>
-        { posts }
+        {posts}
       </div>
     </div>
   );

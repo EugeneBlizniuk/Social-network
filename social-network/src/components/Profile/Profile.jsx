@@ -8,7 +8,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 const Profile = (props) => {
   return (
     <div className={style.profile}>
-      <ProfileInfo />
+      <ProfileInfo addPost={props.addPost} updatePostTextField={props.updateTextField} textFieldValue={props.textFieldValue}/>
       <MyPosts postMessages={props.postMessages} />
     </div >
   );

@@ -2,7 +2,19 @@ import React from 'react';
 
 import style from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+
+    let textFieldValue = React.createRef();
+
+    const onPostChange = () => {
+        let textToSend = textFieldValue.current.value;
+        props.updatePostTextField(textToSend);
+    }
+
+    const addPost = () => {
+        props.addPost();
+    }
+
     return (
         <div>
             <div>
@@ -11,10 +23,10 @@ const ProfileInfo = () => {
             <div className={style.descriptionBlock}>Avatar + description</div>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={textFieldValue} onChange={onPostChange} value={props.textFieldValue}></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={ addPost }>Add post</button>
                 </div>
             </div>
         </div>
