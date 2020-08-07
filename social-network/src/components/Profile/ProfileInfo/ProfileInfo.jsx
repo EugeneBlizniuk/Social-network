@@ -1,18 +1,21 @@
 import React from 'react';
 
 import style from './ProfileInfo.module.css';
+import { addPostActionCreator, updateTextFieldActionCreator } from '../../../redux/state';
 
 const ProfileInfo = (props) => {
 
     let textFieldValue = React.createRef();
 
     const onPostChange = () => {
-        let textToSend = textFieldValue.current.value;
-        props.updatePostTextField(textToSend);
+        const textToSend = textFieldValue.current.value;
+        const action = updateTextFieldActionCreator(textToSend);
+        props.dispatch(action);
     }
 
     const addPost = () => {
-        props.addPost();
+        const action = addPostActionCreator();
+        props.dispatch(action);
     }
 
     return (
