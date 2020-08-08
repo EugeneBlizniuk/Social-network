@@ -3,22 +3,20 @@ import React from "react";
 import style from './MyPosts.module.css';
 
 import Post from './Post/Post';
-import { addPostActionCreator, updateTextFieldActionCreator } from '../../../redux/state';
 
 const MyPosts = (props) => {
   let posts = props.postMessages.map(p => <Post message={p.message} likeCount={p.likeCount} />);
 
-  let textFieldValue = React.createRef();
+  let textField = React.createRef();
 
   const onPostChange = () => {
-    const textToSend = textFieldValue.current.value;
-    const action = updateTextFieldActionCreator(textToSend);
-    props.dispatch(action);
+    debugger
+    const text = textField.current.value;
+    props.updateTextField(text);
   }
 
   const addPost = () => {
-    const action = addPostActionCreator();
-    props.dispatch(action);
+    props.addPost();
   }
 
   return (
@@ -27,7 +25,7 @@ const MyPosts = (props) => {
       <div>New posts</div>
       <div>
         <div>
-          <textarea ref={textFieldValue} onChange={onPostChange} value={props.textFieldValue}></textarea>
+          <textarea ref={textField} onChange={onPostChange} value={props.newPostTextField}></textarea>
         </div>
         <div>
           <button onClick={addPost}>Add post</button>

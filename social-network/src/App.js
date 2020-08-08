@@ -6,25 +6,19 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Profile/Dialogs/Dialogs";
 import News from "./components/Profile/News/News";
 import Music from "./components/Profile/Music/Music";
 import Settings from "./components/Profile/Settings/Settings";
+import DialogsContainer from "./components/Profile/Dialogs/DialogsContainer";
 
-const App = (props) => {
-  debugger;
+const App = () => {
   return (
     <div className="app-wrapper">
       <Header />
       <Navbar />
       <div className="app-wrapper-content">
-        <Route path="/profile"
-          render={() => <Profile postMessages={props.state.profileData.postMessages}
-            textFieldValue={props.state.profileData.newPostTextField} dispatch={props.dispatch} />}
-        />
-        <Route path="/dialogs"
-          render={() => <Dialogs dialogs={props.state.dialogsData.dialogs} messages={props.state.dialogsData.messages} />}
-        />
+        <Route path="/profile" render={() => <Profile />} />
+        <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route path="/news" component={News} />
         <Route path="/music" component={Music} />
         <Route path="/settings" component={Settings} />

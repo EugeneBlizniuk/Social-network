@@ -1,9 +1,5 @@
-const ADD_POST = 'ADD_POST';
-const UPDATE_TEXT_FIELD = 'UPDATE_TEXT_FIELD';
-
-export const addPostActionCreator = () => ({ type: ADD_POST });
-
-export const updateTextFieldActionCreator = (text) => ({ type: UPDATE_TEXT_FIELD, text });
+import profileData from './reducer/profileData';
+import dialogsData from './reducer/dialogData';
 
 let store = {
     _state: {
@@ -53,7 +49,8 @@ let store = {
                 {
                     message: "ye"
                 }
-            ]
+            ],
+            newMessageBody: ""
         }
     },
     _callSubscriber() {
@@ -70,20 +67,10 @@ let store = {
     },
 
     dispatch(action) {
-        debugger;
-        if (action.type === ADD_POST) {
-            let newPost = {
-                message: this._state.profileData.newPostTextField,
-                likeCount: 0
-            };
-            this._state.profileData.postMessages.push(newPost);
-            this._state.profileData.newPostTextField = "";
-            this._callSubscriber();
-        } else if (action.type === UPDATE_TEXT_FIELD) {
-            this._state.profileData.newPostTextField = action.text;
-            this._callSubscriber();
-        }
-    } 
+        this._state.profileData = profileData(this._state.profileData, action);
+        this._state.dialogsData = dialogsData(this._state.dialogsData, action);
+        this._callSubscriber();
+    }
 }
 
 window.store = store;
