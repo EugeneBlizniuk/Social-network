@@ -10,7 +10,6 @@ const Profile = () => {
     <div className={style.profile}>
       <ProfileInfo />
       <MyPostsContainer />
-      <Users />
     </div >
   );
 };
