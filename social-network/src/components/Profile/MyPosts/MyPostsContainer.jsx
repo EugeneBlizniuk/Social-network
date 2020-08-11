@@ -1,12 +1,12 @@
-import { addPostActionCreator, updateTextFieldActionCreator } from '../../../redux/reducer/profileData';
+import { addPostActionCreator, updateTextFieldActionCreator } from '../../../redux/reducer/profileReducer';
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     debugger
     return {
-        newPostTextField: state.profileData.newPostTextField,
-        postMessages: state.profileData.postMessages
+        newPostTextField: state.profilePage.newPostTextField,
+        postMessages: state.profilePage.postMessages
     };
 }
 
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addPost: () => {
             const action = addPostActionCreator();
-            dispatch(action)
+            dispatch(action);
         },
         updateTextField: (text) => {
             const action = updateTextFieldActionCreator(text);

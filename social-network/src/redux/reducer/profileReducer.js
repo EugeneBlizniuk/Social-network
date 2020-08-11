@@ -19,7 +19,7 @@ const initialState = {
     newPostTextField: ""
 };
 
-const profileData = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
             let newState =  { ...initialState };
@@ -42,4 +42,4 @@ const profileData = (state = initialState, action) => {
     }
 }
 
-export default profileData;
+export default profileReducer;

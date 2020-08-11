@@ -1,13 +1,13 @@
-import { updateMessageBodyCreator, addMessageCreator } from "../../../redux/reducer/dialogData"
+import { updateMessageBodyCreator, addMessageCreator } from "../../../redux/reducer/dialogsReducer"
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     debugger
     return {
-        dialogs: state.dialogsData.dialogs,
-        messages: state.dialogsData.messages,
-        newMessageBody: state.dialogsData.newMessageBody
+        dialogs: state.dialogsPage.dialogs,
+        messages: state.dialogsPage.messages,
+        newMessageBody: state.dialogsPage.newMessageBody
     }
 }
 
