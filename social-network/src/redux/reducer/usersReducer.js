@@ -5,9 +5,18 @@ const SET_USERS = 'SET_USERS';
 
 let initialState = {
     users: [
-        { id: 1, followed: true, fullName: 'Yauheni B.', location: { country: 'Belarus', city: 'Minsk' } },
-        { id: 2, followed: false, fullName: 'Diana S.', location: { country: 'Russia', city: 'Moscow' } },
-        { id: 3, followed: true, fullName: 'Karina S.', location: { country: 'Italy', city: 'Rome' } },
+        {
+            id: 1, imageUrl: 'https://upload.wikimedia.org/wikipedia/ru/thumb/f/fc/%D0%97%D0%B0%D0%B1%D0%BE%D0%BB%D0%BE%D1%86%D0%BA%D0%B8%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2%D0%B8%D1%87.jpg/373px-%D0%97%D0%B0%D0%B1%D0%BE%D0%BB%D0%BE%D1%86%D0%BA%D0%B8%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2%D0%B8%D1%87.jpg',
+            followed: true, fullName: 'Yauheni B.', location: { country: 'Belarus', city: 'Minsk' }
+        },
+        {
+            id: 2, imageUrl: 'https://upload.wikimedia.org/wikipedia/ru/thumb/f/fc/%D0%97%D0%B0%D0%B1%D0%BE%D0%BB%D0%BE%D1%86%D0%BA%D0%B8%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2%D0%B8%D1%87.jpg/373px-%D0%97%D0%B0%D0%B1%D0%BE%D0%BB%D0%BE%D1%86%D0%BA%D0%B8%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2%D0%B8%D1%87.jpg',
+            followed: false, fullName: 'Diana S.', location: { country: 'Russia', city: 'Moscow' }
+        },
+        {
+            id: 3, imageUrl: 'https://upload.wikimedia.org/wikipedia/ru/thumb/f/fc/%D0%97%D0%B0%D0%B1%D0%BE%D0%BB%D0%BE%D1%86%D0%BA%D0%B8%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2%D0%B8%D1%87.jpg/373px-%D0%97%D0%B0%D0%B1%D0%BE%D0%BB%D0%BE%D1%86%D0%BA%D0%B8%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9_%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2%D0%B8%D1%87.jpg',
+            followed: true, fullName: 'Karina S.', location: { country: 'Italy', city: 'Rome' }
+        },
     ]
 }
 
@@ -26,8 +35,8 @@ const usersReducer = (state = initialState, action) => {
                 })
             };
             return stateCopy;
-            case SET_USERS: 
-            return { ...state, users: [ ...state.users, ...action.users ] }
+        case SET_USERS:
+            return { ...state, users: [...state.users, ...action.users] }
         default:
             return state;
     }

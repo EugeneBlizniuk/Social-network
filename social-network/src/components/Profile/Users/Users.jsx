@@ -1,9 +1,34 @@
 import React from 'react';
+import style from './Users.module.css';
 
 const Users = (props) => {
     return (
         <div>
-            Users are going to be here
+            {
+                props.users.map(u => <div key={u.id}>
+                    <span>
+                        <div>
+                            <img src={u.imageUrl} className={style.userImage}></img>
+                        </div>
+                        <div>
+                            {
+                                u.followed
+                                    ? <button onClick={() => props.unfollow(u.id)}>Unfollow</button>
+                                    : <button onClick={() => props.follow(u.id)}>Follow</button>
+                            }
+                        </div>
+                    </span>
+                    <span>
+                        <span>
+                            <div>{u.fullName}</div>
+                        </span>
+                        <span>
+                            <div>{u.location.country}</div>
+                            <div>{u.location.city}</div>
+                        </span>
+                    </span>
+                </div>)
+            }
         </div>
     );
 }
