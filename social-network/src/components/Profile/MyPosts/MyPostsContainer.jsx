@@ -3,7 +3,6 @@ import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
-    debugger
     return {
         newPostTextField: state.profilePage.newPostTextField,
         postMessages: state.profilePage.postMessages
