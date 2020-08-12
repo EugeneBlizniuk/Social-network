@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Users.module.css';
 import * as axios from 'axios';
+import userPhoto from './../../../assets/images/user.jpg';
 
 class Users extends React.Component {
     componentDidMount() {
@@ -17,7 +18,7 @@ class Users extends React.Component {
                     this.props.users.map(u => <div key={u.id}>
                         <span>
                             <div>
-                                <img src={u.uniqueUrlName} className={style.userImage}></img>
+                                <img src={u.photos.small != null ? u.photos.small : userPhoto} className={style.userImage}></img>
                             </div>
                             <div>
                                 {
