@@ -13,7 +13,7 @@ let Users = (props) => {
     }
 
     return <div>
-        <Preloader />
+        { props.isFetching ? <Preloader /> : null }
         <div>
             {
                 pages.map(p => {
