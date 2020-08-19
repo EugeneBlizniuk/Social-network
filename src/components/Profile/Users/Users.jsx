@@ -1,6 +1,7 @@
 import React from 'react';
 import userPhoto from './../../../assets/images/user.png';
 import style from './Users.module.css';
+import Preloader from '../../common/Preloader/Preloader';
 
 let Users = (props) => {
 
@@ -10,8 +11,9 @@ let Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
-    
+
     return <div>
+        <Preloader />
         <div>
             {
                 pages.map(p => {
