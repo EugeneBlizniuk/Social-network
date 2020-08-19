@@ -1,9 +1,6 @@
 const ADD_POST = 'ADD_POST';
 const UPDATE_TEXT_FIELD = 'UPDATE_TEXT_FIELD';
-
-export const addPostActionCreator = () => ({ type: ADD_POST });
-
-export const updateTextFieldActionCreator = (text) => ({ type: UPDATE_TEXT_FIELD, text });
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 const initialState = {
     postMessages: [
@@ -16,7 +13,8 @@ const initialState = {
             likeCount: 13
         }
     ],
-    newPostTextField: ""
+    newPostTextField: "",
+    profile: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -37,9 +35,15 @@ const profileReducer = (state = initialState, action) => {
                 newPostTextField: action.text
             }
         }
+        case SET_USER_PROFILE: 
+            return { ...state, userProfile: action.userProfile }
         default:
             return state;
     }
 }
+
+export const addPostActionCreator = () => ({ type: ADD_POST });
+export const updateTextFieldActionCreator = (text) => ({ type: UPDATE_TEXT_FIELD, text });
+export const setUserProfile = (userProfile) => ({ type: SET_USER_PROFILE, userProfile });
 
 export default profileReducer;

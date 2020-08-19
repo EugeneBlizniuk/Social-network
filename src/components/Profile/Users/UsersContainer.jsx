@@ -24,8 +24,6 @@ class UsersContainer extends React.Component {
         } catch (err) {
             console.log(err);
         }
-
-
     }
 
     onPageChanged = (currentPage) => {
