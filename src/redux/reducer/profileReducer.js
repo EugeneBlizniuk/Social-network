@@ -36,7 +36,7 @@ const profileReducer = (state = initialState, action) => {
             }
         }
         case SET_USER_PROFILE: 
-            return { ...state, userProfile: action.userProfile }
+            return { ...state, profile: action.userProfile }
         default:
             return state;
     }
