@@ -2,6 +2,7 @@ import React from 'react';
 
 import style from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
+import { NavLink } from 'react-router-dom';
 
 const ProfileInfo = (props) => {
     debugger
