@@ -9,8 +9,7 @@ const MyPosts = (props) => {
 
   let textField = React.createRef();
 
-  const onPostChange = () => {
-    debugger
+  const onPostChange = () => {    
     const text = textField.current.value;
     props.updateTextField(text);
   }

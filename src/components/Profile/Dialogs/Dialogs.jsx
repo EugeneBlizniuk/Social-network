@@ -11,7 +11,6 @@ const Dialogs = (props) => {
     let messageElements = props.messages.map(m => <Message message={m.message} />);
 
     const onMessageBodyChange = (event) => {
-        debugger;
         const text = event.target.value;
         props.updateMessageBody(text);
     }
