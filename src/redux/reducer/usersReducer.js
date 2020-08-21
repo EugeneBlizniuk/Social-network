@@ -44,17 +44,17 @@ const usersReducer = (state = initialState, action) => {
         case FOLLOWING_IN_PROCESS:
             return {
                 ...state,
-                followingInProcess: action.isFetching 
-                ? [...state.followingInProcess, action.userId ]
-                : state.followingInProcess.filter(id => id != action.userId)
+                followingInProcess: action.isFetching
+                    ? [...state.followingInProcess, action.userId]
+                    : state.followingInProcess.filter(id => id != action.userId)
             }
         default:
             return state;
     }
 }
 
-export const follow = (userId) => ({ type: FOLLOW, userId });
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
+export const followSuccess = (userId) => ({ type: FOLLOW, userId });
+export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage });
 export const setTotalCount = (totalCount) => ({ type: SET_TOTAL_COUNT, totalCount });
@@ -71,6 +71,28 @@ export const getUsers = (currentPage, pageSize) => (dispatch) => {
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
             dispatch(setTotalCount(data.totalCount));
+        });
+}
+
+export const follow = (userId) => (dispatch) => {
+    dispatch(toggleFollowingInProcess(true, userId));
+    usersAPI.follow(userId)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(followSuccess(userId));
+            }
+            dispatch(toggleFollowingInProcess(false, userId));
+        });
+}
+
+export const unfollow = (userId) => (dispatch) => { 
+    dispatch(toggleFollowingInProcess(true, userId));
+    usersAPI.unfollow(userId)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(unfollowSuccess(userId));
+            }
+            dispatch(toggleFollowingInProcess(false, userId));
         });
 }
 
