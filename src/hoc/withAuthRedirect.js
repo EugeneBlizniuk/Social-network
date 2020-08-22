@@ -5,7 +5,6 @@ import { Redirect } from 'react-router-dom';
 export const withAuthRedirect = (Component) => {
 
     class RedirectComponent extends React.Component {
-        debugger
         render() {
             if (!this.props.isAuthenticated) return <Redirect to='/login' />
 
