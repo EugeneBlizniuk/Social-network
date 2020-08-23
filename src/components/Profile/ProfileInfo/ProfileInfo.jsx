@@ -8,12 +8,12 @@ const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
-
+    
     return (
         <div>
             <div className={style.descriptionBlock}>
                 <img src={props.profile.photos.large} />
-                <ProfileStatus status={"status is here"} />
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
             </div>
         </div>
     );
