@@ -12,22 +12,23 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
+            debugger
             return {
                 ...state,
-                ...action.payload,
-                isAuthenticated: true
+                ...action.payload
             }
         default:
             return state;
     }
 }
 
-export const setUserData = ({ id, email, login, isAuthenticated }) => ({ type: SET_USER_DATA, payload: { id, email, login, isAuthenticated } });
+export const setUserData = (id, email, login, isAuthenticated) => ({ type: SET_USER_DATA, payload: { id, email, login, isAuthenticated } });
 
 export const getAuthUserData = () => (dispatch) => {
     authAPI.me()
         .then(response => {
             if (response.data.resultCode === 0) {
+                debugger
                 let { id, email, login } = response.data.data;
                 dispatch(setUserData(id, email, login, true));
             }
