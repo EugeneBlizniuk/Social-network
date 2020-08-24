@@ -1,5 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+
+import { login } from '../../redux/reducer/authReducer';
 
 const LoginForm = (props) => {
     return (
@@ -8,7 +11,7 @@ const LoginForm = (props) => {
                 <Field name={'login'} placeholder={'Login'} component={'input'} />
             </div>
             <div>
-                <Field name={'password'} placeholder={'Password'} component={'input'} />
+                <Field name={'password'} placeholder={'Password'} component={'input'} type={'password'} />
             </div>
             <div>
                 <Field name={'rememberMe'} type={'checkbox'} component={'input'} /> Remember me
@@ -22,9 +25,10 @@ const LoginForm = (props) => {
 
 const LoginReduxFrom = reduxForm({ form: 'login' })(LoginForm)
 
-const Login = () => {
+const Login = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData);
+        const { login, password, rememberMe } = formData;
+        props.login(login, password, rememberMe);
     }
 
     return (<div>
@@ -33,4 +37,4 @@ const Login = () => {
     </div>);
 }
 
-export default Login;
+export default connect(null, { login })(Login);
