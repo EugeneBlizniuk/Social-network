@@ -2,10 +2,13 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
+import style from './Login.module.css';
+
 import { login } from '../../redux/reducer/authReducer';
 import { Redirect } from 'react-router-dom';
 
 const LoginForm = (props) => {
+    debugger
     return (
         <form onSubmit={props.handleSubmit} >
             <div>
@@ -17,6 +20,8 @@ const LoginForm = (props) => {
             <div>
                 <Field name={'rememberMe'} type={'checkbox'} component={'input'} /> Remember me
             </div>
+            { props.error && <div className={style.errorSummaryForm}>{props.error}</div> }
+
             <div>
                 <button>Login</button>
             </div>
