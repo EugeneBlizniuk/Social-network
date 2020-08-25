@@ -12,7 +12,6 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
-            debugger
             return {
                 ...state,
                 ...action.payload
@@ -28,7 +27,6 @@ export const getAuthUserData = () => (dispatch) => {
     authAPI.me()
         .then(response => {
             if (response.data.resultCode === 0) {
-                debugger
                 let { id, email, login } = response.data.data;
                 dispatch(setUserData(id, email, login, true));
             }
@@ -36,11 +34,9 @@ export const getAuthUserData = () => (dispatch) => {
 }
 
 export const login = (email, password, rememberMe) => (dispatch) => {
-    debugger
     authAPI.login(email, password, rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
-                debugger
                 dispatch(getAuthUserData());
             }
         });
