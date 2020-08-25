@@ -10,6 +10,14 @@ import {
 import Users from './Users';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
+import {
+    selectUsers,
+    selectPageSize,
+    selectCurrentPage,
+    selectTotalCount,
+    selectIsFetching,
+    selectFollowingInProcess
+} from '../../../redux/selector/usersSelector';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -38,16 +46,16 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        currentPage: state.usersPage.currentPage,
-        totalCount: state.usersPage.totalCount,
-        isFetching: state.usersPage.isFetching,
-        followingInProcess: state.usersPage.followingInProcess
+        users: selectUsers(state),
+        pageSize: selectPageSize(state),
+        currentPage: selectCurrentPage(state),
+        totalCount: selectTotalCount(state),
+        isFetching: selectIsFetching(state),
+        followingInProcess: selectFollowingInProcess(state)
     }
 }
 
 export default compose(
     withAuthRedirect,
-    connect(mapStateToProps, { follow, unfollow, setTotalCount, getUsers, toggleFollowingInProcess})
+    connect(mapStateToProps, { follow, unfollow, setTotalCount, getUsers, toggleFollowingInProcess })
 )(UsersContainer);

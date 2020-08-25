@@ -16,6 +16,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import { initializeApp } from './redux/reducer/appReducer';
 import Preloader from "./components/common/Preloader/Preloader";
+import { selectInitialized } from "./redux/selector/appSelector";
 
 class App extends React.Component {
   componentDidMount() {
@@ -46,7 +47,7 @@ class App extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-  initialized: state.app.initialized
+  initialized: selectInitialized(state)
 });
 
 export default compose(
