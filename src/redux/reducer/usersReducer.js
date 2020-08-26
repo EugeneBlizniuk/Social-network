@@ -66,10 +66,10 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
 
     const response = await usersAPI.getUsers(dispatch, pageSize);
-    
+
     dispatch(toggleIsFetching(false));
-    dispatch(setUsers(data.items));
-    dispatch(setTotalCount(data.totalCount));
+    dispatch(setUsers(response.data.items));
+    dispatch(setTotalCount(response.data.totalCount));
 }
 
 export const follow = (userId) => async (dispatch) => {
