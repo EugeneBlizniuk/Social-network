@@ -1,7 +1,12 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import { getUserProfile, getStatus, updateStatus } from '../../redux/reducer/profileReducer';
+import {
+    getUserProfile,
+    getStatus,
+    updateStatus,
+    savePhoto
+} from '../../redux/reducer/profileReducer';
 import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
@@ -13,11 +18,14 @@ import {
 } from "../../redux/selector/profileSelector";
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.match.params.userId;
         if (!userId) {
             if (this.props.isAuthenticated) {
                 userId = this.props.autherizedUserId;
+                if (!userId) {
+                    this.props.history.push('/login');
+                }
             }
         }
 
@@ -25,8 +33,25 @@ class ProfileContainer extends React.Component {
         this.props.getStatus(userId);
     }
 
+    componentDidMount() {
+        this.refreshProfile();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.userId != this.props.match.params.userId) {
+            this.refreshProfile();
+        }
+    }
+
     render() {
-        return <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
+        return <Profile
+            {...this.props}
+            profile={this.props.profile}
+            status={this.props.status}
+            updateStatus={this.props.updateStatus}
+            isOwner={!this.props.match.params.userId}
+            savePhoto={this.props.savePhoto}
+        />
     }
 }
 
@@ -40,5 +65,5 @@ let mapStateToProps = (state) => ({
 export default compose(
     withAuthRedirect,
     withRouter,
-    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus })
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto })
 )(ProfileContainer);
