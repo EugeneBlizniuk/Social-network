@@ -65,7 +65,7 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(setCurrentPage(currentPage));
     dispatch(toggleIsFetching(true));
 
-    const response = await usersAPI.getUsers(dispatch, pageSize);
+    const response = await usersAPI.getUsers(currentPage, pageSize);
 
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(response.items));
