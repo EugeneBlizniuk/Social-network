@@ -4,6 +4,7 @@ import style from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatus from './ProfileStatus';
 import userPhoto from '../../../assets/images/user.png';
+import Contacts from './Contacts/Contacts';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -17,6 +18,7 @@ const ProfileInfo = (props) => {
         }
     }
 
+    debugger
     return (
         <div>
             <div className={style.descriptionBlock}>
@@ -25,6 +27,7 @@ const ProfileInfo = (props) => {
                     <div> <input type={'file'} onChange={onAvatarChosen} /> </div>
                 }
                 <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+                <Contacts {...props} />
             </div>
         </div>
     );
