@@ -5,9 +5,9 @@ const Contacts = (props) => {
         <div>
             <b>Contacts</b>:
             {
-                Object.keys(props.profile.contacts)
+                Object.keys(props.contacts)
                     .map(key => {
-                        return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
+                        return <Contact key={key} contactTitle={key} contactValue={props.contacts[key]} />
                     })
             }
         </div>
