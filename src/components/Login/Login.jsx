@@ -6,21 +6,17 @@ import style from './Login.module.css';
 
 import { login } from '../../redux/reducer/authReducer';
 import { Redirect } from 'react-router-dom';
+import { createField, Input } from '../common/FormControls/FormControls';
+import { required } from '../../utils/validators/validators';
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
+    debugger
     return (
-        <form onSubmit={props.handleSubmit} >
-            <div>
-                <Field name={'login'} placeholder={'Login'} component={'input'} />
-            </div>
-            <div>
-                <Field name={'password'} placeholder={'Password'} component={'input'} type={'password'} />
-            </div>
-            <div>
-                <Field name={'rememberMe'} type={'checkbox'} component={'input'} /> Remember me
-            </div>
-            { props.error && <div className={style.errorSummaryForm}>{props.error}</div> }
-
+        <form onSubmit={handleSubmit} >
+            {createField('Login', 'login', [required], Input)}
+            {createField('Password', 'password', [required], Input, { type: 'password' })}
+            {createField('Login', 'login', [required], Input, { type: 'checkbox' }, 'remember me')}
+            {error && <div className={style.errorSummaryForm}>{error}</div>}
             <div>
                 <button>Login</button>
             </div>
@@ -34,8 +30,7 @@ const Login = (props) => {
     if (props.isAuthenticated) return <Redirect to={'/profile'} />
 
     const onSubmit = (formData) => {
-        const { login, password, rememberMe } = formData;
-        props.login(login, password, rememberMe);
+        props.login(formData.login, formData.password, formData.rememberMe);
     }
 
     return (<div>
