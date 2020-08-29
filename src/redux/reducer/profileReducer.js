@@ -1,4 +1,4 @@
-import { usersAPI, profileAPI } from "../../api/API";
+import { profileAPI } from "../../api/API";
 
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -44,8 +44,7 @@ export const setStatus = (status) => ({ type: SET_STATUS, status });
 export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_FILE, photos });
 
 export const getUserProfile = (userId) => async (dispatch) => {
-    const response = await usersAPI.getProfile(userId);
-
+    const response = await profileAPI.getProfile(userId);
     dispatch(setUserProfile(response.data));
 }
 

@@ -20,10 +20,6 @@ export const usersAPI = {
     },
     unfollow(userId) {
         return instance.delete(`follow/${userId}`);
-    },
-    getProfile(userId) {
-        console.warn('it is going to be deprecated, use getProfile from profileAPI');
-        return profileAPI.getProfile(userId);
     }
 };
 

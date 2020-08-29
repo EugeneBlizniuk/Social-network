@@ -10,7 +10,6 @@ import { createField, Input } from '../common/FormControls/FormControls';
 import { required } from '../../utils/validators/validators';
 
 const LoginForm = ({ handleSubmit, error }) => {
-    debugger
     return (
         <form onSubmit={handleSubmit} >
             {createField('Login', 'login', [required], Input)}

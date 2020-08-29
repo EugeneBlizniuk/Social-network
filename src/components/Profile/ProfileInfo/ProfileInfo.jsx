@@ -8,7 +8,7 @@ import { useState } from 'react';
 import ProfileDataForm from './ProfileDataForm';
 import ProfileData from './ProfileData';
 
-const ProfileInfo = (profile, status, updateStatus, isOwner, savePhoto) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
 
     let [editMode, setEditMode] = useState(false);
 
@@ -27,7 +27,6 @@ const ProfileInfo = (profile, status, updateStatus, isOwner, savePhoto) => {
         console.log(formData);
     }
 
-    debugger
     return (
         <div>
             <div className={style.descriptionBlock}>
