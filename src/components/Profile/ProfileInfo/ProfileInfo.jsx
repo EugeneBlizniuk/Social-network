@@ -8,7 +8,7 @@ import { useState } from 'react';
 import ProfileDataForm from './ProfileDataForm';
 import ProfileData from './ProfileData';
 
-const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, saveProfileData }) => {
 
     let [editMode, setEditMode] = useState(false);
 
@@ -24,7 +24,10 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
     }
 
     const onSubmit = (formData) => {
-        console.log(formData);
+        saveProfileData(formData)
+        .then(
+            () => { setEditMode(false) }
+        );
     }
 
     return (
@@ -36,7 +39,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
                 }
                 {
                     editMode
-                        ? <ProfileDataForm initialValues={profile} onSubmit={onSubmit} />
+                        ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit} />
                         : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={profile} isOwner={isOwner} />
                 }
                 <ProfileStatus status={status} updateStatus={updateStatus} />

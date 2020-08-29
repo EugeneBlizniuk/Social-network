@@ -11,7 +11,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
             {error && <div className={style.formSummaryError}> {error} </div>}
             <div>
                 <b>Full name:</b>
-                {createField('Full name', 'fullNam', [], Input)}
+                {createField('Full name', 'fullName', [], Input)}
             </div>
             <div>
                 <b>Do I need a job?:</b>
