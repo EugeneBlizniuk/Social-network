@@ -75,13 +75,12 @@ export const savePhoto = (photoFile) => async (dispatch) => {
 }
 
 export const saveProfileData = (profileData) => async (dispatch, getState) => {
-    const userId = getState().auth.userId;
+    const userId = getState().auth.id;
     const response = await profileAPI.saveProfileData(profileData);
 
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId));
     } else {
-        debugger
         dispatch(stopSubmit("editProfileDataForm", {_error: response.data.messages[0] }));
         return Promise.reject(response.data.messages[0]);
     }
