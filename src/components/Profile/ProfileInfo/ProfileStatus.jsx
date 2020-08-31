@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const ProfileStatus = ({ status, updateStatus }) => {
     let [editMode, setEditMode] = useState(false);
-    let [status, setStatus] = useState(status);
+    let [localStatus, setStatus] = useState(status);
 
     useEffect( () => {
         setStatus(status);
@@ -14,7 +14,7 @@ const ProfileStatus = ({ status, updateStatus }) => {
 
     const deactivateEditMode = () => {
         setEditMode(false);
-        updateStatus(status);
+        updateStatus(localStatus);
     }
 
     const onStatusChange = (e) => {
@@ -31,7 +31,7 @@ const ProfileStatus = ({ status, updateStatus }) => {
             {editMode &&
                 <div>
                     <input autoFocus={true} onBlur={deactivateEditMode} onChange={onStatusChange}
-                        value={status}></input>
+                        value={localStatus}></input>
                 </div>
             }
         </div>
