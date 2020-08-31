@@ -7,8 +7,6 @@ import * as serviceWorker from './serviceWorker';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
 
-window.store = store;
-
 ReactDOM.render(
   <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Provider store={store}>

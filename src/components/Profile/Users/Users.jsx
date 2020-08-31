@@ -3,7 +3,7 @@ import Preloader from '../../common/Preloader/Preloader';
 import User from './User';
 import Paginator from '../../common/Paginator/Paginator';
 
-let Users = (props) => {
+const Users = (props) => {
 
     return <div>
         {props.isFetching ? <Preloader /> : null}

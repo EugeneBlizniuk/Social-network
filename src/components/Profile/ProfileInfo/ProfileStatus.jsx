@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-const ProfileStatus = (props) => {
+const ProfileStatus = ({ status, updateStatus }) => {
     let [editMode, setEditMode] = useState(false);
-    let [status, setStatus] = useState(props.status);
+    let [status, setStatus] = useState(status);
 
     useEffect( () => {
-        setStatus(props.status);
-    }, [props.status] );
+        setStatus(status);
+    }, [status] );
 
     const activateEditMode = () => {
         setEditMode(true);
@@ -14,7 +14,7 @@ const ProfileStatus = (props) => {
 
     const deactivateEditMode = () => {
         setEditMode(false);
-        props.updateStatus(status);
+        updateStatus(status);
     }
 
     const onStatusChange = (e) => {
@@ -25,7 +25,7 @@ const ProfileStatus = (props) => {
         <div>
             {!editMode &&
                 <div>
-                    <span onDoubleClick={activateEditMode}>{props.status || 'no status' }</span>
+                    <span onDoubleClick={activateEditMode}>{status || 'no status' }</span>
                 </div>
             }
             {editMode &&
