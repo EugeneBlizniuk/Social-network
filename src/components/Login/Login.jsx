@@ -28,16 +28,16 @@ const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
 
 const LoginReduxFrom = reduxForm({ form: 'login' })(LoginForm)
 
-const Login = (props) => {
-    if (props.isAuthenticated) return <Redirect to={'/profile'} />
+const Login = ({ isAuthenticated, captchaUrl, login }) => {
+    if (isAuthenticated) return <Redirect to={'/profile'} />
 
     const onSubmit = (formData) => {
-        props.login(formData.login, formData.password, formData.rememberMe, formData.captcha);
+        login(formData.login, formData.password, formData.rememberMe, formData.captcha);
     }
 
     return (<div>
         <h1>Login</h1>
-        <LoginReduxFrom onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
+        <LoginReduxFrom onSubmit={onSubmit} captchaUrl={captchaUrl} />
     </div>);
 }
 

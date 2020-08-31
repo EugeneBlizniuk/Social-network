@@ -1,5 +1,10 @@
 import * as axious from 'axios';
 
+const DEFAULT_PAGE_SIZE = 10;
+const DEFAULT_CURRENT_PAGE = 1;
+const DEFAULT_REMEMBER_ME = false;
+const DEFAULT_CAPTCHA = null;
+
 const instance = axious.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -9,7 +14,7 @@ const instance = axious.create({
 });
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10) {
+    getUsers(currentPage = DEFAULT_CURRENT_PAGE, pageSize = DEFAULT_PAGE_SIZE) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data;
@@ -58,7 +63,7 @@ export const authAPI = {
     me() {
         return instance.get(`auth/me`);
     },
-    login(email, password, rememberMe = false, captcha = null) {
+    login(email, password, rememberMe = DEFAULT_REMEMBER_ME, captcha = DEFAULT_CAPTCHA) {
         return instance.post('auth/login', { email, password, rememberMe, captcha });
     },
     logout() {

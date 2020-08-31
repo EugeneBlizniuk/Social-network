@@ -26,7 +26,7 @@ const Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChanged, port
                     [styles.selectedPage]: currentPage === p
                 }, styles.pageNumber)}
                     key={p}
-                    onClick={(e) => {
+                    onClick={() => {
                         onPageChanged(p);
                     }}>{p}</span>
             })}
